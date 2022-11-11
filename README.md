@@ -1,64 +1,97 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Cuatro en linea
 
-## About Laravel
+## Resumen
+Este proyecto, basado en PHP y utilizando el framework de **Laravel**, se trata de una página web en la que se puede jugar al cuatro en línea. En caso de no saber de qué se trata, aquí puedes leer las <a href="https://www.casualarena.com/es/conecta-4/reglas#:~:text=Se%20juega%20siempre%20entre%202,horizontal%2C%20vertical%20u%20oblicuo%20gana."  target="_blank">reglas del juego.</a>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Requisitos
+- DDEV
+- Docker Desktop
+- Composer
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+A continuación se detalla la instalación de los primeros 2 requisitos. En cuanto a **Composer**, en caso de no contar con el mismo, su instalación será explicada más adelante.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Instalación de DDEV
+#### Chocolatey
+La forma más rapida de instalar DDEV es primero instalando **chocolatey**.
+Para hacerlo, en la terminal con permisos administrativos ejecutamos:
+```
+Get-ExecutionPolicy
+```
+En caso de que la respuesta haya sido ```Restricted```, ejecutar:
+```
+Set-ExecutionPolicy AllSigned
+```
+Luego para finalmente instalar **chocolatey**, ejecutamos la siguiente línea de comando:
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+```
 
-## Learning Laravel
+#### DDEV
+Con **chocolatey** ya instalado, todo lo que necesitamos para instalar **DDEV** es ejecutar la siguiente línea de comando en la terminal:
+```
+choco install ddev
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Instalación de Docker Desktop
+Para instalar **Docker** en nuestro sistema, nos dirigimos al siguiente [enlace](https://www.docker.com/get-started/). Luego, seleccionamos nuestro sistema operativo y seguimos los pasos indicados por el programa. 
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+## Setup y configuración de DDEV
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Lo primero que necesitamos para correr la aplicación es clonar este repositorio, por lo que contando con [git](https://git-scm.com/downloads) instalado, situamos nuestra terminal en el directorio deseado y ejecutamos la siguiente línea:
+```
+git clone https://github.com/Cuscusiovich/cuatroenlinea.git
+```
+Para ubicarnos en el directorio de la aplicación, ejecutamos ```cd cuatroenlinea```, y procedemos a iniciar **Docker desktop**.
 
-### Premium Partners
+Con todo listo para empezar con la configuración del entorno, ejecutamos ```ddev config```. Se nos presentarán tres apartados en los que se recomienda colocar la siguiente información:
+```
+"Proyect Name: " nombre deseado para el proyecto. Tecla Enter para continuar.
+"Docroot Location: " no completar. Tecla Enter para continuar.
+"Proyect Type: " colocar 'laravel'. Tecla Enter para terminar.
+```
+Ahora, en caso de no contar con **Composer** en el sistema, ejecutamos:
+```
+ddev composer install
+```
+Luego, es necesario crear un archivo de ambiente para el proyecto. Esto lo realizaremos con el comando:
+```
+cp .env.example .env
+```
+Con esto hecho, crearemos una clave de aplicación para nuestro proyecto:
+```
+php artisan key:generate
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+Al completar estos pasos, ya estamos listos para probar la aplicación.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Ejecutar Cuatro en línea
+Para iniciar el servidor local, ejecutamos:
+```
+ddev start
+```
+En caso de obtener algún error relacionado al uso de los puertos, por ejemplo *Unable to listen on required ports, port 433 is already in use*, hay dos posibles soluciones.
+- 'Matar' al proceso utilizando el puerto correspondiente.
+- Editar el archivo ```ddev/config.yaml``` y cambiar donde dice 443 y 80 por otros numeros, como 4430 y 8000.
 
-## Code of Conduct
+Por último, con **DDEV** iniciado correctamente, veremos algo como esto (donde *projectname* se refiere al nombre indicado al configurar **DDEV**):
+```
+Successfully started projectname
+Project can be reached at http://projectname.ddev.site:800 http://127.0.0.1:50536
+```
+Con ello, nos dirijimos a dicho link, y si vemos una pantalla como la siguiente significa que lo hemos logrado.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/740983198636441710/988505028014800956/unknown.png" width="700"></a></p>
 
-## Security Vulnerabilities
+Una vez situados en esta página, para jugar agregamos ```/jugar/1``` a la dirección anteriormente mencionada para poder ver el juego.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://cdn.discordapp.com/attachments/740983198636441710/988505223746183228/unknown.png" width="700"></a></p>
 
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Con esto, la guía está completa. Antes de cerrar la aplicación y para que todo termine correctamente, no olvide de ejecutar:
+```
+ddev poweroff
+```
+Para volver a probar la aplicación, la sección de Configuración ya no será necesaria, por lo que con ```ddev start``` sería suficiente.
